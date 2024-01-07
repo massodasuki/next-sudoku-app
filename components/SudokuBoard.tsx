@@ -3,13 +3,13 @@ import styles from './SudokuBoard.module.css';
 
 const SudokuBoard: React.FC = () => {
   const [sudokuGrid, setSudokuGrid] = useState<number[][]>([]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/generate'); // Adjust the level as needed
+        const response = await fetch('/api/getSudoku'); // Adjust the level as needed
         const data = await response.json();
-        setSudokuGrid(data.grid);
+        setSudokuGrid(data.data[0].board);
+        // setSudokuGrid(data.data.board); if findOne()
       } catch (error) {
         console.error('Error fetching Sudoku grid:', error);
       }

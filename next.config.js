@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  MONGODB_URI: process.env.MONGODB_URI,
-  DB_NAME: process.env.DB_NAME,
-  
+   env: {
+    MONGODB_URI: "mongodb://localhost:27017/",
+    DB_NAME: "sudoku",
+  },
 }
 
 module.exports = nextConfig
