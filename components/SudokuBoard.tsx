@@ -1,18 +1,43 @@
-// components/SudokuBoard.tsx
-import React from 'react';
+import { useEffect, useState } from 'react';
+import styles from './SudokuBoard.module.css';
 
-interface SudokuBoardProps {
-  puzzle: number[][];
-  onChange: (row: number, col: number, value: number) => void;
-}
+const SudokuBoard: React.FC = () => {
+  const [sudokuGrid, setSudokuGrid] = useState<number[][]>([]);
 
-const SudokuBoard: React.FC<SudokuBoardProps> = ({ puzzle, onChange }) => {
-  // Implement your Sudoku board component here
-  return (
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/generate'); // Adjust the level as needed
+        const data = await response.json();
+        setSudokuGrid(data.grid);
+      } catch (error) {
+        console.error('Error fetching Sudoku grid:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+return (
+    <div className={styles.centered}>
     <div>
-      {/* Your Sudoku board JSX here */}
+      <h1>Sudoku Board</h1>
+      <table className={styles.sudokuTable}> {/* Apply the CSS class to the table */}
+        <tbody>
+          {sudokuGrid.map((row, rowIndex) => (
+            <tr key={rowIndex}>
+              {row.map((cell, colIndex) => (
+                <td key={colIndex}>{cell !== 0 ? cell : ''}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
     </div>
   );
 };
+
 
 export default SudokuBoard;

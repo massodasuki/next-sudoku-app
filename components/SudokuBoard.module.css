@@ -1,0 +1,30 @@
+/* components/SudokuBoard.module.css */
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+/* components/SudokuBoard.module.css */
+.sudokuTable {
+    border-collapse: collapse;
+  }
+  
+  .sudokuTable td {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000;
+    text-align: center;
+    font-size: 16px;
+  }
+  
+/* Make every 3rd row bold at the bottom */
+.sudokuTable tr:nth-child(3n) td {
+    border-bottom-width: 2px;
+  }
+  
+  /* Make every 3rd column bold on the right */
+  .sudokuTable td:nth-child(3n) {
+    border-right-width: 2px;
+  }
