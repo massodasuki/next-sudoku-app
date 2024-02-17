@@ -3,6 +3,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import styles from './AmazonSize.module.css';
 import SudokuBoard from './SudokuBoard';
+import domtoimage from 'dom-to-image';
 
 const MyComponent = () => {
   return (
@@ -19,16 +20,29 @@ const AmazonLetterSize = () => {
   const handleDownloadPDF = () => {
     if (!paperRef.current) return;
 
-    html2canvas(paperRef.current, { scale: 2 }).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
+    // html2canvas(paperRef.current, { scale: 2 }).then((canvas) => {
+    //   const imgData = canvas.toDataURL('image/png');
 
-      const pdf = new jsPDF('p', 'in', 'letter'); // Use 'letter' for 8.5 x 11 inches
-      const imgWidth = 8.5;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    //   const pdf = new jsPDF('p', 'in', 'letter'); // Use 'letter' for 8.5 x 11 inches
+    //   const imgWidth = 8.5;
+    //   const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-      pdf.save('Letter_Paper_Content.pdf');
-    });
+    //   pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+    //   pdf.save('Letter_Paper_Content.pdf');
+    // });
+
+    domtoimage.toPng(paperRef.current)
+      .then((dataUrl) => {
+        const pdf = new jsPDF('p', 'in', 'letter');
+        const imgWidth = 8.5;
+        const imgHeight = (pdf.internal.pageSize.height * imgWidth) / pdf.internal.pageSize.width;
+
+        pdf.addImage(dataUrl, 'PNG', 0, 0, imgWidth, imgHeight);
+        pdf.save('Letter_Paper_Content.pdf');
+      })
+      .catch((error) => {
+        console.error('Error converting to image:', error);
+      });
   };
 
   const paperStyle = {
