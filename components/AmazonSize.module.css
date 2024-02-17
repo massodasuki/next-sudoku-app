@@ -1,0 +1,38 @@
+/* components/A4Paper.module.css */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .paper {
+    width: 8.5in;
+    height: 11in;
+    border: 1px solid #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+  }
+  
+  .paper header {
+    text-align: center;
+  }
+  
+  .paper section {
+    /* Adjust as needed */
+  }
+  
+  .paper footer {
+    text-align: center;
+  }
+  
+  .downloadButton {
+    margin-top: 20px;
+  }
+  
