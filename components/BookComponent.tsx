@@ -5,7 +5,7 @@ import PageComponent from './PageComponent';
 const BookComponent = () => {
   const pages = [
     { pageNumber: 1, content: 'Content for page 1' },
-    { pageNumber: 2, content: 'Content for page 2' },
+    { pageNumber: 2, content: 'Content for page 2' }
     // Add more pages as needed
   ];
 

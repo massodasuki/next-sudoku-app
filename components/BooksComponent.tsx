@@ -3,13 +3,13 @@ import React from 'react';
 import PageComponent from './PageComponent';
 
 interface BookComponentProps {
-  bookId: any; // Assuming bookId is a string, adjust the type accordingly
+  sheet: any; // Assuming sheet is a string, adjust the type accordingly
 }
 
-const BookComponent: React.FC<BookComponentProps> = ({ bookId }) => {
-  const pages = Array.from({ length: bookId }, (_, index) => ({
-    pageNumber: parseInt(bookId, 10) + index,
-    content: `Content for page ${parseInt(bookId, 10) + index}`,
+const BookComponent: React.FC<BookComponentProps> = ({ sheet }) => {
+  const pages = Array.from({ length: sheet }, (_, index) => ({
+    pageNumber: parseInt(sheet, 10) + index,
+    content: `Content for page ${parseInt(sheet, 10) + index}`,
   }));
   console.log(pages)
   return (
@@ -18,7 +18,7 @@ const BookComponent: React.FC<BookComponentProps> = ({ bookId }) => {
         <PageComponent key={page.pageNumber} {...page} />
       ))}
 
-      <p>{bookId}</p>
+      <p>{sheet}</p>
     </div>
   );
 };

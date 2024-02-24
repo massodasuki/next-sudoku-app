@@ -1,16 +1,16 @@
 // book/[id].js
-import BookComponent from '@/components/BookComponent';
+import BooksComponent from '@/components/BooksComponent';
 import { useRouter } from 'next/router';
 
-const Post = () => {
+const Books = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { pages } = router.query;
 
   return (
     <div>
-      <BookComponent bookId={id}/>
+      <BooksComponent sheet={pages}/>
     </div>
   );
 };
 
-export default Post;
+export default Books;
