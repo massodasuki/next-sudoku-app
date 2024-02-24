@@ -20,19 +20,8 @@ const AmazonLetterSize = () => {
   const handleDownloadPDF = () => {
     if (!paperRef.current) return;
 
-    // html2canvas(paperRef.current, { scale: 2 }).then((canvas) => {
-    //   const imgData = canvas.toDataURL('image/png');
-
-    //   const pdf = new jsPDF('p', 'in', 'letter'); // Use 'letter' for 8.5 x 11 inches
-    //   const imgWidth = 8.5;
-    //   const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-    //   pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-    //   pdf.save('Letter_Paper_Content.pdf');
-    // });
-
     domtoimage.toPng(paperRef.current)
-      .then((dataUrl) => {
+      .then((dataUrl:string) => {
         const pdf = new jsPDF('p', 'in', 'letter');
         const imgWidth = 8.5;
         const imgHeight = (pdf.internal.pageSize.height * imgWidth) / pdf.internal.pageSize.width;
@@ -40,7 +29,7 @@ const AmazonLetterSize = () => {
         pdf.addImage(dataUrl, 'PNG', 0, 0, imgWidth, imgHeight);
         pdf.save('Letter_Paper_Content.pdf');
       })
-      .catch((error) => {
+      .catch((error:string) => {
         console.error('Error converting to image:', error);
       });
   };

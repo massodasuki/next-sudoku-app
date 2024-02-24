@@ -22,7 +22,7 @@ const SudokuBoard: React.FC = () => {
 return (
     <div className={styles.centered}>
     <div>
-      <h1>Sudoku Board</h1>
+      {/* <h1>Sudoku Board</h1> */}
       <table className={styles.sudokuTable}> {/* Apply the CSS class to the table */}
         <tbody>
           {sudokuGrid.map((row, rowIndex) => (

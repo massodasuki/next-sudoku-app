@@ -1,13 +1,13 @@
 import AmazonLetterSize from '@/components/AmazonASizeComponent';
-import SudokuBoard from '../components/SudokuBoard';
-
-import A4Paper from '@/components/A4PaperComponent';
+import BookComponent from '@/components/BookComponent';
 
 const Home: React.FC = () => {
   return (
     <div>
       <h1>Sudoku App</h1>
-      <AmazonLetterSize/>
+      {/* <AmazonLetterSize/>
+       */}
+       <BookComponent/>
     </div>
   );
 };
